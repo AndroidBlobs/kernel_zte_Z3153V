@@ -12,7 +12,10 @@ CFLAGS_REMOVE_patch.o = -pg
 endif
 
 CFLAGS_REMOVE_return_address.o = -pg
-
+ccflags-y += -I$(srctree)/drivers/misc/mediatek/include/
+ccflags-y += -I$(srctree)/drivers/misc/mediatek/mtprof/
+ccflags-y += -Ikernel/sched/
+ccflags-y += -I$(srctree)/drivers/misc/mediatek/base/power/$(MTK_PLATFORM)/
 # Object file lists.
 
 obj-y		:= elf.o entry-common.o irq.o opcodes.o \
@@ -94,5 +97,6 @@ obj-$(CONFIG_SMP)		+= psci_smp.o
 endif
 
 obj-$(CONFIG_HAVE_ARM_SMCCC)	+= smccc-call.o
+obj-$(CONFIG_ZTE_TEE_SUPPORT)	+= smccc-call.o
 
 extra-y := $(head-y) vmlinux.lds
