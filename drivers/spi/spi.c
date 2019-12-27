@@ -1815,7 +1815,7 @@ struct spi_master *spi_alloc_master(struct device *dev, unsigned size)
 
 	device_initialize(&master->dev);
 	master->bus_num = -1;
-	master->num_chipselect = 1;
+	master->num_chipselect = 3;  /* changed to 3 spi devices for each spi bus */
 	master->dev.class = &spi_master_class;
 	master->dev.parent = dev;
 	pm_suspend_ignore_children(&master->dev, true);
